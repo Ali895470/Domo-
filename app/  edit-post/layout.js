@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../../firebaseConfig';
+import { auth } from '../../firebaseconfig';
 
 export default function Layout({ children }) {
   const router = useRouter();
