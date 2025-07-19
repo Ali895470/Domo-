@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebaseConfig'; // ← تأكد أن المسار صحيح حسب مكان ملف firebaseConfig.js
+import { auth } from '../../../firebaseConfig';
 
 export default function Layout({ children }) {
   const router = useRouter();
