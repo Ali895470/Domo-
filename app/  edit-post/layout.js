@@ -3,27 +3,23 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebaseconfig'; // تم تصحيح المسار
+import { auth } from '../../firebaseconfig';
 
 export default function Layout({ children }) {
   const router = useRouter();
-  const [user, setUser] = useState(null); // إضافة state للمستخدم
-  const [loading, setLoading] = useState(true); // إضافة loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-      
-      if (!currentUser) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
         router.push('/');
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, [router]);
 
-  // عرض loading أثناء التحقق من المصادقة
   if (loading) {
     return <div>Loading...</div>;
   }
