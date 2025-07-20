@@ -3,25 +3,23 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
- import { auth } from 
-'../../firebaseconfig';//  المسار الصحيح
-export default function Layout({ children }) {
+import { auth } from '../../firebaseconfig';
+
+export default function AuthLayout({ children }) {
   const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
- const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{  setUser(currentUser);  setLoading(false);  
- if (!currentUser){ router.push('/'):
-      }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setAuthChecked(true);
+      if (!user) router.replace('/login'); // استخدم replace لمنع العودة
     });
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, [router]);
 
-  if (loading) {
-    return <div>جاري التحميل...</div>;
-  }
+  if (!authChecked) {
+    return null; // 
 
   return <>{children}</>;
 }
