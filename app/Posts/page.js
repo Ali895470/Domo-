@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { db } from "@/firebaseConfig";
+import { db } from "@/firebaseconfig";
 import { useRouter } from "next/navigation";
 
 export default function PostsPage() {
