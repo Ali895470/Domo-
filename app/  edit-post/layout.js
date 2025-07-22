@@ -12,14 +12,17 @@ export default function AuthLayout({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setAuthChecked(true);
-      if (!user) router.replace('/login'); // استخدم replace لمنع العودة
+      if (!user) {
+        router.replace('/login'); // استخدم replace لمنع العودة
+      }
     });
 
     return unsubscribe;
   }, [router]);
 
   if (!authChecked) {
-    return null; // 
+    return null;
+  }
 
   return <>{children}</>;
 }
