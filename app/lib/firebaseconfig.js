@@ -3,7 +3,7 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
+const firebaseconfig = {
   apiKey: "AIzaSyC5tEXAMPLE8LhdYhP90bfMTxkGZoWEXAMPLE",
   authDomain: "my-project-123.firebaseapp.com",
   projectId: "my-project-123",
@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 // ✅ لمنع إعادة التهيئة عند إعادة تحميل الصفحة (مهم في Next.js)
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const app = getApps().length ? getApp() : initializeApp(firebaseconfig);
 
 // ✅ خدمات Firebase
 const auth = getAuth(app);
